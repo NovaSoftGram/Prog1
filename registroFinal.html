@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+  <title>Registro Final</title>
+</head>
+<body>
+  <header>Completar registro</header>
+  <form id="registroFinal">
+    <label>CI: <br><input type="number" id="ci" required></label><br>
+    <label>Contraseña: <input type="password" id="password" required></label><br>
+    <label>Confirmar contraseña: <input type="password" id="confirmar" required></label><br>
+    <button type="submit" class="botonRegistro">Enviar</button>
+  </form>
+
+  <div id="respuesta"></div>
+
+  <script>
+    document.getElementById("registroFinal").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const ci = document.getElementById("ci").value;
+      const password = document.getElementById("password").value;
+      const confirmar = document.getElementById("confirmar").value;
+
+      if (password !== confirmar) {
+        document.getElementById("respuesta").innerText = "Las contraseñas no coinciden.";
+        return;
+      }
+
+      const datos = {
+        ci: parseInt(ci),
+        password: password
+      };
+
+      fetch("registroFinalControlador.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datos)
+      })
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("respuesta").innerText = data;
+      });
+    });
+  </script>
+</body>
+</html>

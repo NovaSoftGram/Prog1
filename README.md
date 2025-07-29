@@ -1,2 +1,1 @@
-# Prog1
-Proyecto de programación
+# Prog 1
