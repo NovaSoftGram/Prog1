@@ -19,7 +19,6 @@ CREATE TABLE unidades (
     direccion VARCHAR(255) NOT NULL,
     disponible BOOLEAN DEFAULT TRUE,
     usuario_asignado INT DEFAULT NULL,
-    FOREIGN KEY (usuario_asignado) REFERENCES personas(CI)
 );
 
 SELECT * FROM personas;

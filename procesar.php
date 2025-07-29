@@ -14,7 +14,7 @@ if (
 ) {
     // Reenvía los datos validados al modelo
     // Usamos cURL para enviar los datos a modelo.php como JSON
-    $ch = curl_init("http://localhost/prog1/modelo.php");
+    $ch = curl_init("http://localhost/Prog1/modelo.php");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
