@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+  <title>Panel de Administración</title>
+</head>
+<body>
+  <header>Solicitudes pendientes</header>
+  <ul id="lista"></ul>
+
+  <script>
+    fetch("adminControlador.php")
+      .then(res => res.json())
+      .then(usuarios => {
+        const lista = document.getElementById("lista");
+        usuarios.forEach(persona => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <strong>${persona.nombre}</strong> - CI: ${persona.CI} - Cuota: ${persona.cuota}
+            <button onclick="aprobar(${persona.CI})">Aprobar</button>
+          `;
+          lista.appendChild(li);
+        });
+      });
+
+    function aprobar(ci) {
+      fetch("aprobarUsuario.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ CI: ci })
+      })
+      .then(res => res.text())
+      .then(data => {
+        alert(data);
+        location.reload();
+      });
+    }
+  </script>
+</body>
+</html>
