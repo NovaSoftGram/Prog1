@@ -1,0 +1,54 @@
+version: "3.3"
+
+services:
+  db:
+    image: mysql:8.0
+    command:
+     --default-authentication-plugin=mysql_native_password
+    container_name: cooperativa_db
+    restart: always
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - cooperativa_net
+
+  web:
+    build: .
+    container_name: cooperativa_web
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    env_file: .env
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - cooperativa_net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: cooperativa_phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
+    networks:
+      - cooperativa_net
+
+volumes:
+  db_data:
+
+networks:
+  cooperativa_net:
