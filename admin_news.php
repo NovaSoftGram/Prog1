@@ -38,14 +38,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <header class="headerLog">Panel de noticias (Admin)</header>
 
-<?php if ($mensaje): ?>
-  <p><?= htmlspecialchars($mensaje) ?></p>
-<?php endif; ?>
 
-<form method="post" id="formNoticias">
-  <label>Título:<br><input type="text" name="title" required></label><br><br>
-  <label>Cuerpo:<br><textarea name="body" rows="6" cols="60" required></textarea></label><br><br>
-  <button type="submit">Publicar</button>
+
+<form class="notis" method="post" id="formNoticias">
+<?php if ($mensaje): ?>
+<p class="avisoNotis"><?= htmlspecialchars($mensaje) ?></p>
+<?php endif; ?>
+  <label class="tituloNotis">Título:<br>
+  <input type="text" name="title" required></label>
+  <br>
+  <br>
+  <label class="cuerpoNotis">Cuerpo:<br>
+  <textarea name="body" rows="6" cols="60" required></textarea></label>
+  <br>
+  <br>
+  <button class="publicar" type="submit">Publicar</button>
 </form>
 </body>
 </html>

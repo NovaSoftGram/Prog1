@@ -17,7 +17,7 @@ $news = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 <header class="headerLog">Noticias</header>
 
 <?php if (empty($news)): ?>
-  <p>No hay noticias publicadas.</p>
+  <p id=>No hay noticias publicadas.</p>
 <?php else: ?>
   <?php foreach ($news as $n): ?>
     <article>
