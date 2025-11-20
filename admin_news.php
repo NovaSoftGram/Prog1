@@ -2,13 +2,6 @@
 session_start();
 require_once __DIR__ . "/conexion.php";
 
-
-if (!isset($_SESSION["user_id"])) {
-    http_response_code(401);
-    echo "Sin sesión";
-    exit;
-}
-
 $mensaje = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
