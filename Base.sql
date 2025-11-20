@@ -51,6 +51,12 @@ CREATE TABLE IF NOT EXISTS news (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO unidades (direccion, disponible, usuario_asignado) VALUES
+  ('Av. Uruguay 1234, apto 1', 1, NULL),
+  ('Gral. Flores 2100, apto 2', 1, NULL),
+  ('Bulevar Artigas 455, apto 3', 1, NULL),
+  ('Rambla República 88, apto 4', 1, NULL),
+  ('Calle Colón 300, apto 5', 1, NULL);
 
 
-SELECT * FROM personas;
+SELECT * FROM unidades;

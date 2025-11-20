@@ -36,7 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link rel="stylesheet" href="Estilos/styles.css">
 </head>
 <body>
-<header class="headerLog">Panel de noticias (Admin)</header>
+<header
+ class="headerLog">Panel de noticias (Admin)
+ <a href="admin.html">regresar</a>
+</header>
 
 
 

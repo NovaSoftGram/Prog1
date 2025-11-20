@@ -18,13 +18,10 @@ $userId = $_SESSION["user_id"];
 $method = $_SERVER["REQUEST_METHOD"];
 
 // GET: listar unidades disponibles (para la UI)
-if ($method === "GET" && (isset($_GET["action"]) && $_GET["
-
-
-"] === "list_unidades_disponibles")) {
+if ($method === "GET" && isset($_GET["action"]) && $_GET["action"] === "list_unidades_disponibles") {
     $res = $conn->query("SELECT id, direccion FROM unidades WHERE disponible = 1");
     if (!$res) {
-        echo json_encode([]); // devolver array vacío en error de consulta
+        echo json_encode([]);
         exit;
     }
     $out = $res->fetch_all(MYSQLI_ASSOC);
